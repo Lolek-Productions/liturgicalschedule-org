@@ -7,7 +7,7 @@ const Popover = PopoverPrimitive.Root;
 
 const PopoverTrigger = PopoverPrimitive.Trigger;
 
-type PopoverContentProps = React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & {
+type PopoverContentProps = Omit<React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>, 'className' | 'align' | 'sideOffset'> & {
   align?: "start" | "center" | "end";
   sideOffset?: number;
   className?: string;
