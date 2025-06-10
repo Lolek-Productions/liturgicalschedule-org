@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { RoleCombobox } from "@/components/ui/role-combobox";
+import { RoleComboboxPopover } from "@/components/ui/role-combobox-popover";
 
 /**
  * PersonForm component for create/edit person
@@ -72,7 +72,7 @@ export default function PersonForm({ initialValues = {}, onSubmit, loading }) {
       </div>
       <div>
         <label className="block mb-0.5">Roles</label>
-        <RoleCombobox
+        <RoleComboboxPopover
           roles={Array.isArray(form.role_ids) ? form.role_ids : []}
           setRoles={(roles) => setForm((f) => ({ ...f, role_ids: roles }))}
         />
