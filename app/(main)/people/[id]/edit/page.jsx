@@ -7,7 +7,7 @@ export default async function EditPersonPage({ params }) {
   async function handleUpdate(formData) {
     "use server";
     await updatePerson(params.id, formData);
-    redirect("/main/people");
+    redirect("/people");
   }
   return (
     <div className="max-w-xl mx-auto py-8">

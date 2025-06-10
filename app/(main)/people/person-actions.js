@@ -51,3 +51,16 @@ export async function deletePerson(id) {
   if (error) throw error;
   return true;
 }
+
+// Fetch all unique roles from the people table (flattened)
+export async function getAllRoles() {
+  const { data, error } = await supabase
+    .from("people")
+    .select("roles");
+  if (error) throw error;
+  // Flatten and deduplicate roles
+  const allRoles = (data || [])
+    .flatMap(row => Array.isArray(row.roles) ? row.roles : [])
+    .filter(Boolean);
+  return Array.from(new Set(allRoles));
+}

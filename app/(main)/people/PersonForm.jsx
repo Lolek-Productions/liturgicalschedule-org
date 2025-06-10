@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import { RoleCombobox } from "@/components/ui/role-combobox";
 
 /**
  * PersonForm component for create/edit person
@@ -15,7 +16,7 @@ export default function PersonForm({ initialValues = {}, onSubmit, loading }) {
     last_name: initialValues.last_name || "",
     phone_number: initialValues.phone_number || "",
     email: initialValues.email || "",
-    roles: initialValues.roles || [],
+    role_ids: initialValues.role_ids || [],
   });
 
   function handleChange(e) {
@@ -64,24 +65,16 @@ export default function PersonForm({ initialValues = {}, onSubmit, loading }) {
         <input
           name="email"
           type="email"
-          value={form.email}
+          value={form.email}  
           onChange={handleChange}
           className="w-full border rounded px-2 py-1"
         />
       </div>
       <div>
-        <label className="block mb-0.5">Roles (JSON)</label>
-        <input
-          name="roles"
-          value={JSON.stringify(form.roles)}
-          onChange={(e) => {
-            try {
-              setForm((f) => ({ ...f, roles: JSON.parse(e.target.value) }));
-            } catch {
-              setForm((f) => ({ ...f, roles: e.target.value }));
-            }
-          }}
-          className="w-full border rounded px-2 py-1 font-mono"
+        <label className="block mb-0.5">Roles</label>
+        <RoleCombobox
+          roles={Array.isArray(form.role_ids) ? form.role_ids : []}
+          setRoles={(roles) => setForm((f) => ({ ...f, role_ids: roles }))}
         />
       </div>
       <button

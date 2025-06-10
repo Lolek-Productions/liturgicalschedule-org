@@ -6,7 +6,7 @@ export default function CreatePersonPage() {
   async function handleCreate(formData) {
     "use server";
     await createPerson(formData);
-    redirect("/main/people");
+    redirect("/people");
   }
   return (
     <div className="max-w-xl mx-auto py-8">
