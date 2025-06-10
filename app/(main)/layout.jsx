@@ -12,7 +12,7 @@ export default function MainLayout({
           <AppSidebar />
         </div>
         {/* Main content always fills remaining space */}
-        <SidebarInset className="flex-1">
+        <SidebarInset className="flex-1 p-6">
           {children}
         </SidebarInset>
       </div>
