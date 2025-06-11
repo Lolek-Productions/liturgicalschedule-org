@@ -4,6 +4,7 @@ import type * as React from "react"
 import {
   AudioWaveform,
   BookOpen,
+  Calendar,
   Bot,
   Command,
   Frame,
@@ -12,6 +13,7 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
+  Church
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -29,44 +31,64 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
+      name: "St. Leo",
+      logo: Church,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
+      name: "St. Mary's",
+      logo: Church,
       plan: "Startup",
     },
     {
-      name: "Evil Corp.",
-      logo: Command,
+      name: "St. John's",
+      logo: Church,
       plan: "Free",
     },
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Calendar",
       url: "#",
-      icon: SquareTerminal,
+      icon: Calendar,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Yearly",
+          url: "/calendar",
+        },
+        {
+          title: "Monthly",
           url: "#",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
+          title: "Weekly",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Ministries",
+      url: "#",
+      icon: SquareTerminal,
+      isActive: false,
+      items: [
+        {
+          title: "Yearly",
+          url: "#",
+        },
+        {
+          title: "Monthly",
+          url: "#",
+        },
+        {
+          title: "Weekly",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "Resources",
       url: "#",
       icon: Bot,
       items: [
@@ -85,7 +107,7 @@ const data = {
       ],
     },
     {
-      title: "Documentation",
+      title: "Training",
       url: "#",
       icon: BookOpen,
       items: [
@@ -108,7 +130,7 @@ const data = {
       ],
     },
     {
-      title: "Settings",
+      title: "Onboarding",
       url: "#",
       icon: Settings2,
       items: [
@@ -131,22 +153,23 @@ const data = {
       ],
     },
   ],
+
   projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
+  //   {
+  //     name: "Design Engineering",
+  //     url: "#",
+  //     icon: Frame,
+  //   },
+  //   {
+  //     name: "Sales & Marketing",
+  //     url: "#",
+  //     icon: PieChart,
+  //   },
+  //   {
+  //     name: "Travel",
+  //     url: "#",
+  //     icon: Map,
+  //   },
   ],
 }
 
