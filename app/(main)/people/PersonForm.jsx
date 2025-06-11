@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { RoleComboboxPopover } from "@/components/ui/role-combobox-popover";
+import { InputField } from '@/components/form/input-field';
+import { Button } from '@/components/ui/button';
 
 /**
  * PersonForm component for create/edit person
@@ -30,60 +32,57 @@ export default function PersonForm({ initialValues = {}, onSubmit, loading }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-3xl mx-auto py-8 w-full">
+      <InputField
+        label="First Name"
+        name="first_name"
+        value={form.first_name || ''}
+        onChange={handleChange}
+        required
+        description="The person's first name"
+        className="w-full"
+      />
+      
+      <InputField
+        label="Last Name"
+        name="last_name"
+        value={form.last_name || ''}
+        onChange={handleChange}
+        required
+        description="The person's last name"
+        className="w-full"
+      />
+
+      <InputField
+        label="Phone Number"
+        name="phone_number"
+        value={form.phone_number || ''}
+        onChange={handleChange}
+        className="w-full"
+      />
+      
+      <InputField
+        label="Email"
+        name="email"
+        value={form.email || ''}
+        onChange={handleChange}
+        className="w-full"
+      />
+
       <div>
-        <label className="block mb-0.5">First Name</label>
-        <input
-          name="first_name"
-          value={form.first_name}
-          onChange={handleChange}
-          required
-          className="w-full border rounded px-2 py-1"
-        />
-      </div>
-      <div>
-        <label className="block mb-0.5">Last Name</label>
-        <input
-          name="last_name"
-          value={form.last_name}
-          onChange={handleChange}
-          required
-          className="w-full border rounded px-2 py-1"
-        />
-      </div>
-      <div>
-        <label className="block mb-0.5">Phone Number</label>
-        <input
-          name="phone_number"
-          value={form.phone_number}
-          onChange={handleChange}
-          className="w-full border rounded px-2 py-1"
-        />
-      </div>
-      <div>
-        <label className="block mb-0.5">Email</label>
-        <input
-          name="email"
-          type="email"
-          value={form.email}  
-          onChange={handleChange}
-          className="w-full border rounded px-2 py-1"
-        />
-      </div>
-      <div>
-        <label className="block mb-0.5">Roles</label>
+        <label className="block">Roles</label>
         <RoleComboboxPopover
           roles={Array.isArray(form.role_ids) ? form.role_ids : []}
           setRoles={(roles) => setForm((f) => ({ ...f, role_ids: roles }))}
         />
       </div>
-      <button
-        type="submit"
-        className="bg-primary text-white px-4 py-2 rounded disabled:opacity-50"
-        disabled={loading}
-      >
-        {loading ? "Saving..." : "Save"}
-      </button>
+
+
+      <div className="pt-4">
+        <Button type="submit" disabled={loading}>
+          {loading ? "Saving..." : "Save"}
+        </Button>
+      </div>
     </form>
   );
 }

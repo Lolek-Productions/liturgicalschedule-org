@@ -1,6 +1,7 @@
 import PersonForm from "../PersonForm";
 import { createPerson } from "../person-actions";
 import { redirect } from "next/navigation";
+import { MainHeader } from "@/components/main-header";
 
 export default function CreatePersonPage() {
   async function handleCreate(formData) {
@@ -9,8 +10,13 @@ export default function CreatePersonPage() {
     redirect("/people");
   }
   return (
-    <div className="max-w-xl mx-auto py-8">
-      <h1 className="text-2xl font-bold mb-4">Create Person</h1>
+    <div className="flex-1 flex flex-col">
+      <MainHeader 
+        breadcrumbs={[
+          { label: "People", href: "/people" },
+          { label: "Create Person", active: true }
+        ]}
+      />
       <PersonForm onSubmit={handleCreate} />
     </div>
   );
