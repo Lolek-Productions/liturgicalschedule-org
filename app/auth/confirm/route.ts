@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createServerSupabaseClient } from "@/lib/supabase/server";
 import { type EmailOtpType } from "@supabase/supabase-js";
 import { redirect } from "next/navigation";
 import { type NextRequest } from "next/server";
@@ -10,18 +10,24 @@ export async function GET(request: NextRequest) {
   const next = searchParams.get("next") ?? "/";
 
   if (token_hash && type) {
-    const supabase = await createClient();
+    const supabase = await createServerSupabaseClient();
 
-    const { error } = await supabase.auth.verifyOtp({
-      type,
-      token_hash,
-    });
-    if (!error) {
-      // redirect user to specified redirect URL or root of app
-      redirect(next);
-    } else {
-      // redirect the user to an error page with some instructions
-      redirect(`/auth/error?error=${error?.message}`);
+    try {
+      const { error } = await supabase.auth.verifyOtp({
+        type,
+        token_hash,
+      });
+      
+      if (!error) {
+        // redirect user to specified redirect URL or root of app
+        redirect(next);
+      } else {
+        // redirect the user to an error page with some instructions
+        redirect(`/auth/error?error=${encodeURIComponent(error.message || 'Unknown error')}`);
+      }
+    } catch (error) {
+      console.error('Error in email confirmation:', error);
+      redirect(`/auth/error?error=${encodeURIComponent('Failed to verify email')}`);
     }
   }
 

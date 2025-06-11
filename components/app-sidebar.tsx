@@ -13,16 +13,108 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-  Church
+  Church,
+  ChevronRight,
 } from "lucide-react"
-
-import { NavMain } from "@/components/nav-main"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail } from "@/components/ui/sidebar"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, SidebarGroup, SidebarGroupLabel, SidebarMenu } from "@/components/ui/sidebar"
+import { SidebarMenuItemsComponent } from "@/components/sidebar-menu-items-component"
+import { SidebarMenuMinistriesComponent } from "@/components/sidebar-menu-ministries-component"
 
-// This is sample data.
+const navFirst = [
+  {
+    title: "Calendar",
+    url: "#",
+    icon: Calendar,
+    isActive: true,
+    items: [
+      {
+        title: "Yearly",
+        url: "/calendar",
+      },
+      {
+        title: "Monthly",
+        url: "#",
+      },
+      {
+        title: "Weekly",
+        url: "#",
+      },
+    ],
+  },
+]
+
+const navLast = [
+  {
+    title: "Resources",
+    url: "#",
+    icon: Bot,
+    items: [
+      {
+        title: "Genesis",
+        url: "#",
+      },
+      {
+        title: "Explorer",
+        url: "#",
+      },
+      {
+        title: "Quantum",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Training",
+    url: "#",
+    icon: BookOpen,
+    items: [
+      {
+        title: "Introduction",
+        url: "#",
+      },
+      {
+        title: "Get Started",
+        url: "#",
+      },
+      {
+        title: "Tutorials",
+        url: "#",
+      },
+      {
+        title: "Changelog",
+        url: "#",
+      },
+    ],
+  },
+  {
+    title: "Onboarding",
+    url: "#",
+    icon: Settings2,
+    items: [
+      {
+        title: "General",
+        url: "#",
+      },
+      {
+        title: "Team",
+        url: "#",
+      },
+      {
+        title: "Billing",
+        url: "#",
+      },
+      {
+        title: "Limits",
+        url: "#",
+      },
+    ],
+  },
+]
+
 const data = {
   user: {
     name: "shadcn",
@@ -46,129 +138,13 @@ const data = {
       plan: "Free",
     },
   ],
-  navMain: [
-    {
-      title: "Calendar",
-      url: "#",
-      icon: Calendar,
-      isActive: true,
-      items: [
-        {
-          title: "Yearly",
-          url: "/calendar",
-        },
-        {
-          title: "Monthly",
-          url: "#",
-        },
-        {
-          title: "Weekly",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Ministries",
-      url: "#",
-      icon: SquareTerminal,
-      isActive: false,
-      items: [
-        {
-          title: "Yearly",
-          url: "#",
-        },
-        {
-          title: "Monthly",
-          url: "#",
-        },
-        {
-          title: "Weekly",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Resources",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Training",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Onboarding",
-      url: "#",
-      icon: Settings2,
-      items: [
-        {
-          title: "General",
-          url: "#",
-        },
-        {
-          title: "Team",
-          url: "#",
-        },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
-      ],
-    },
-  ],
+  
 
   projects: [
   //   {
   //     name: "Design Engineering",
   //     url: "#",
   //     icon: Frame,
-  //   },
-  //   {
-  //     name: "Sales & Marketing",
-  //     url: "#",
-  //     icon: PieChart,
-  //   },
-  //   {
-  //     name: "Travel",
-  //     url: "#",
-  //     icon: Map,
   //   },
   ],
 }
@@ -180,7 +156,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+
+        <SidebarGroup>
+          <SidebarGroupLabel>Platform</SidebarGroupLabel>
+          <SidebarMenu>
+            <SidebarMenuItemsComponent items={navFirst}/>
+            <SidebarMenuMinistriesComponent/>
+            <SidebarMenuItemsComponent items={navLast}/>
+          </SidebarMenu>
+        </SidebarGroup>
+
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
