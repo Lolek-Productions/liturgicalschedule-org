@@ -12,6 +12,7 @@ export function LiturgyCalendar() {
 
   const liturgicalEvents = [
     { date: 6, title: "Epiphany of the Lord", type: "Solemnity", color: "gold" },
+    { date: 6, title: "Epiphany of the Lord", type: "Solemnity", color: "gold" },
     { date: 7, title: "Baptism of the Lord", type: "Feast", color: "white" },
     { date: 14, title: "2nd Sunday in Ordinary Time", type: "Sunday", color: "green" },
     { date: 21, title: "3rd Sunday in Ordinary Time", type: "Sunday", color: "green" },

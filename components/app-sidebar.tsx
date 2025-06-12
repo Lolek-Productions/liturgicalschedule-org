@@ -14,8 +14,6 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, Sid
 import { SidebarMenuItemsComponent } from "@/components/sidebar-menu-items-component"
 import { SidebarMenuMinistriesComponent } from "@/components/sidebar-menu-ministries-component"
 
-// Navigation arrays can be used in the future if needed
-
 const data = {
   user: {
     name: "shadcn",
