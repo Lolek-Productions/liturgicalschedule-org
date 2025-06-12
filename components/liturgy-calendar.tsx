@@ -202,7 +202,7 @@ export function LiturgyCalendar() {
               </div>
               <div className="flex justify-between items-center">
                 <div>
-                  <p className="font-medium">St. Patrick's Day</p>
+                  <p className="font-medium">St. Patrick&apos;s Day</p>
                   <p className="text-sm text-muted-foreground">March 17, 2024</p>
                 </div>
                 <Badge variant="outline">Optional Memorial</Badge>

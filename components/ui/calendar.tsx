@@ -2,10 +2,16 @@
 
 import * as React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { DayPicker } from "react-day-picker"
+import { DayPicker, DayPickerProps } from "react-day-picker"
 
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+
+// Define custom components type to match what react-day-picker expects
+type CalendarComponents = DayPickerProps["components"] & {
+  IconLeft?: React.ComponentType<{ className?: string }>
+  IconRight?: React.ComponentType<{ className?: string }>
+}
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
@@ -54,9 +60,9 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
-      }}
+        IconLeft: () => <ChevronLeft className="h-4 w-4" />,
+        IconRight: () => <ChevronRight className="h-4 w-4" />,
+      } as CalendarComponents}
       {...props}
     />
   )
