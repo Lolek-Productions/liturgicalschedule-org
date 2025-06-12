@@ -64,7 +64,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <a href={`/ministries`}>
+                <a href={`/today`}>
                   <Church />
                   <span>Today</span>
                 </a>

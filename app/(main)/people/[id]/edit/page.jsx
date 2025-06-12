@@ -4,10 +4,12 @@ import { redirect } from "next/navigation";
 import { MainHeader } from "@/components/main-header";
 
 export default async function EditPersonPage({ params }) {
-  const person = await getPerson(params.id);
+  const { id } = await params;
+
+  const person = await getPerson(id);
   async function handleUpdate(formData) {
     "use server";
-    await updatePerson(params.id, formData);
+    await updatePerson(id, formData);
     redirect("/people");
   }
   return (
