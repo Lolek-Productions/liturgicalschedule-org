@@ -14,6 +14,7 @@ export default async function EditPersonPage({ params }) {
     <div className="flex-1 flex flex-col">
       <MainHeader 
         breadcrumbs={[
+          { label: "Resources", href: "/resources" },
           { label: "People", href: "/people" },
           { label: "Edit Person", active: true }
         ]}

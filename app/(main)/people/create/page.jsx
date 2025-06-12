@@ -13,6 +13,7 @@ export default function CreatePersonPage() {
     <div className="flex-1 flex flex-col">
       <MainHeader 
         breadcrumbs={[
+          { label: "Resources", href: "/resources" },
           { label: "People", href: "/people" },
           { label: "Create Person", active: true }
         ]}

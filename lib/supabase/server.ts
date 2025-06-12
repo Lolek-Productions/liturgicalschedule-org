@@ -1,6 +1,7 @@
 import { createServerClient as createSupabaseServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import { User } from '@supabase/supabase-js';
+import { CookieOptions } from '@supabase/ssr';
 
 interface UserResponse {
   user: User | null;
@@ -19,7 +20,7 @@ export async function createServerSupabaseClient() {
           const cookie = await cookieStore.get(name);
           return cookie?.value;
         },
-        async set(name: string, value: string, options: any) {
+        async set(name: string, value: string, options: CookieOptions) {
           try {
             await cookieStore.set({ 
               name, 
@@ -33,7 +34,7 @@ export async function createServerSupabaseClient() {
             console.error('Error setting cookie:', error);
           }
         },
-        async remove(name: string, options: any) {
+        async remove(name: string, options: CookieOptions) {
           try {
             await cookieStore.set({ 
               name, 

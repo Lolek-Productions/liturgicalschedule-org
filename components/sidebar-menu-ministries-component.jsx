@@ -48,16 +48,16 @@ export function SidebarMenuMinistriesComponent() {
 
   return (
     <Collapsible onOpenChange={handleExpand} className="group/collapsible">
-        <SidebarMenuItem>
+      <SidebarMenuItem>
         <CollapsibleTrigger asChild>
           <SidebarMenuButton>
             <Church />
-              <span>Ministries</span>
+            <span>Ministries</span>
             <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
           </SidebarMenuButton>
-      </CollapsibleTrigger>
+        </CollapsibleTrigger>
         <CollapsibleContent>
-        <SidebarMenuSub>
+          <SidebarMenuSub>
             {isLoading ? (
               <div className="flex justify-center p-2">
               <Loader2 className="h-4 w-4 animate-spin" />

@@ -3,6 +3,10 @@ import { Hero } from "@/components/hero";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import Link from "next/link";
 
+// This ensures the page is dynamically rendered due to cookie usage
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center">

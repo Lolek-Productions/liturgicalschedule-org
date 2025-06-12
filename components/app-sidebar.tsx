@@ -2,118 +2,19 @@
 
 import type * as React from "react"
 import {
-  AudioWaveform,
   BookOpen,
   Calendar,
   Bot,
-  Command,
-  Frame,
-  GalleryVerticalEnd,
-  Map,
-  PieChart,
-  Settings2,
-  SquareTerminal,
   Church,
-  ChevronRight,
 } from "lucide-react"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
 import { TeamSwitcher } from "@/components/team-switcher"
-import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, SidebarGroup, SidebarGroupLabel, SidebarMenu } from "@/components/ui/sidebar"
+import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarRail, SidebarGroup, SidebarGroupLabel, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from "@/components/ui/sidebar"
 import { SidebarMenuItemsComponent } from "@/components/sidebar-menu-items-component"
 import { SidebarMenuMinistriesComponent } from "@/components/sidebar-menu-ministries-component"
 
-const navFirst = [
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-    isActive: true,
-    items: [
-      {
-        title: "Yearly",
-        url: "/calendar",
-      },
-      {
-        title: "Monthly",
-        url: "#",
-      },
-      {
-        title: "Weekly",
-        url: "#",
-      },
-    ],
-  },
-]
-
-const navLast = [
-  {
-    title: "Resources",
-    url: "#",
-    icon: Bot,
-    items: [
-      {
-        title: "Genesis",
-        url: "#",
-      },
-      {
-        title: "Explorer",
-        url: "#",
-      },
-      {
-        title: "Quantum",
-        url: "#",
-      },
-    ],
-  },
-  {
-    title: "Training",
-    url: "#",
-    icon: BookOpen,
-    items: [
-      {
-        title: "Introduction",
-        url: "#",
-      },
-      {
-        title: "Get Started",
-        url: "#",
-      },
-      {
-        title: "Tutorials",
-        url: "#",
-      },
-      {
-        title: "Changelog",
-        url: "#",
-      },
-    ],
-  },
-  {
-    title: "Onboarding",
-    url: "#",
-    icon: Settings2,
-    items: [
-      {
-        title: "General",
-        url: "#",
-      },
-      {
-        title: "Team",
-        url: "#",
-      },
-      {
-        title: "Billing",
-        url: "#",
-      },
-      {
-        title: "Limits",
-        url: "#",
-      },
-    ],
-  },
-]
+// Navigation arrays can be used in the future if needed
 
 const data = {
   user: {
@@ -160,9 +61,72 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup>
           <SidebarGroupLabel>Platform</SidebarGroupLabel>
           <SidebarMenu>
-            <SidebarMenuItemsComponent items={navFirst}/>
+
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href={`/ministries`}>
+                  <Church />
+                  <span>Today</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+
+            <SidebarMenuItemsComponent items={[{
+              title: "Calendar",
+              url: "#",
+              icon: Calendar,
+              isActive: false,
+              items: [
+                {
+                  title: "Yearly",
+                  url: "/calendar",
+                },
+                {
+                  title: "Monthly",
+                  url: "#",
+                },
+                {
+                  title: "Weekly",
+                  url: "#",
+                },
+              ],
+            }]}/>
+            <SidebarMenuItemsComponent items={[{
+              title: "Resources",
+              url: "#",
+              icon: Bot,
+              items: [
+                {
+                  title: "People",
+                  url: "/people",
+                },
+                {
+                  title: "Locations",
+                  url: "/locations",
+                },
+                {
+                  title: "Groups",
+                  url: "/groups",
+                },
+              ],
+            }]}/>
             <SidebarMenuMinistriesComponent/>
-            <SidebarMenuItemsComponent items={navLast}/>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href={`/ministries`}>
+                  <BookOpen />
+                  <span>Training</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+            <SidebarMenuItem>
+              <SidebarMenuButton asChild>
+                <a href={`/onboarding`}>
+                  <BookOpen />
+                  <span>Onboarding</span>
+                </a>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
           </SidebarMenu>
         </SidebarGroup>
 

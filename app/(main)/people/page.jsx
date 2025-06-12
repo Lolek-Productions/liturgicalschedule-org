@@ -6,6 +6,7 @@ export default function PeoplePage({ searchParams }) {
     <div className="flex-1 flex flex-col">
       <MainHeader 
         breadcrumbs={[
+          { label: "Resources", href: "/resources" },
           { label: "People", active: true }
         ]}
       />

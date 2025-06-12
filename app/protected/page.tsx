@@ -3,6 +3,10 @@ import { getCurrentUser } from "@/lib/supabase/server";
 import { InfoIcon } from "lucide-react";
 import { FetchDataSteps } from "@/components/tutorial/fetch-data-steps";
 
+// This ensures the page is dynamically rendered due to cookie usage
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 export default async function ProtectedPage() {
   const { user, error } = await getCurrentUser();
   if (error || !user) {
