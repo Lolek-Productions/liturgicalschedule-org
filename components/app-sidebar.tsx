@@ -67,7 +67,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               items: [
                 {
                   title: "Yearly",
-                  url: "/calendar",
+                  url: "/yearly",
                 },
                 {
                   title: "Monthly",
