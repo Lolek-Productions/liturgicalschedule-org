@@ -18,8 +18,28 @@ const LITURGICAL_COLORS = {
 
 type LiturgicalColor = (typeof LITURGICAL_COLORS)[keyof typeof LITURGICAL_COLORS]
 
+// Event interfaces
+interface EventItem {
+  id: number
+  time: string
+  title: string
+  type: string
+}
+
+interface EventData {
+  id: number
+  title: string
+  date: string
+  time: string
+  duration: string
+  type: string
+  description: string
+  isRecurring: boolean
+  recurringType: string
+}
+
 // Sample events data (expanded for monthly view)
-const sampleEvents = {
+const sampleEvents: Record<string, EventItem[]> = {
   "2024-12-01": [{ id: 1, time: "8:00 AM", title: "Morning Prayer", type: "service" }],
   "2024-12-08": [
     { id: 2, time: "10:30 AM", title: "Holy Eucharist", type: "service" },
@@ -250,7 +270,7 @@ export default function MonthlyLiturgicalCalendar() {
     return date.toISOString().split("T")[0]
   }
 
-  const handleAddEvent = (newEvent: any) => {
+  const handleAddEvent = (newEvent: EventData) => {
     console.log("New event added:", newEvent)
   }
 

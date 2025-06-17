@@ -63,7 +63,6 @@ function getLiturgicalColor(date: Date): LiturgicalColor {
   const year = date.getFullYear()
   const month = date.getMonth()
   const day = date.getDate()
-  const dayOfYear = Math.floor((date.getTime() - new Date(year, 0, 0).getTime()) / (1000 * 60 * 60 * 24))
 
   // Get key liturgical dates
   const easter = getEasterDate(year)

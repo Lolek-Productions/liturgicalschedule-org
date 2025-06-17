@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
 import { Menu, X, SkipBack, SkipForward, CheckCircle2, Circle } from "lucide-react"
 import { MainHeader } from "@/components/main-header"
@@ -89,7 +88,6 @@ export default function VideoTrainingModule() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
   const [currentVideoId, setCurrentVideoId] = useState("video-1")
   const [completedVideos, setCompletedVideos] = useState<Set<string>>(new Set())
-  const [isPlaying, setIsPlaying] = useState(false)
 
   // Get all videos flattened
   const allVideos = videoModules.flatMap((module) => module.videos)
@@ -197,12 +195,6 @@ export default function VideoTrainingModule() {
                         setIsSidebarOpen(false)
                       }}
                     >
-                      {/* <Checkbox
-                        checked={completedVideos.has(video.id)}
-                        onCheckedChange={() => toggleVideoCompletion(video.id)}
-                        onClick={(e) => e.stopPropagation()}
-                      /> */}
-
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           {completedVideos.has(video.id) ? (
@@ -248,8 +240,6 @@ export default function VideoTrainingModule() {
                       className="w-full h-full"
                       controls
                       src={currentVideo.url}
-                      onPlay={() => setIsPlaying(true)}
-                      onPause={() => setIsPlaying(false)}
                     >
                       Your browser does not support the video tag.
                     </video>
