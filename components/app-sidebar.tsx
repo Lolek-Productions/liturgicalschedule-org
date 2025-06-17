@@ -77,6 +77,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   title: "Weekly",
                   url: "/weekly",
                 },
+                {
+                  title: "Daily",
+                  url: "/daily",
+                },
               ],
             }]}/>
             <SidebarMenuItemsComponent items={[{
@@ -101,7 +105,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <SidebarMenuMinistriesComponent/>
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <a href={`/ministries`}>
+                <a href={`/training`}>
                   <BookOpen />
                   <span>Training</span>
                 </a>

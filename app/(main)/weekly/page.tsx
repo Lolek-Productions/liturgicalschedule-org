@@ -144,7 +144,7 @@ export default function WeeklyCalendar() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50 px-4">
       <MainHeader 
         breadcrumbs={[
           { label: "Calendar", href: "/calendar" },

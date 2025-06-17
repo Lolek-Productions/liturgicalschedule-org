@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import AddEventModal from "@/components/add-event-modal"
+import { MainHeader } from "@/components/main-header"
 
 // Liturgical color definitions (same as yearly view)
 const LITURGICAL_COLORS = {
@@ -334,7 +335,15 @@ export default function MonthlyLiturgicalCalendar() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50 px-4">
+
+      <MainHeader 
+        breadcrumbs={[
+          { label: "Building Your Application", href: "#" },
+          { label: "Data Fetching", active: true }
+        ]}
+      />
+
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

@@ -4,6 +4,7 @@ import { useState } from "react"
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { MainHeader } from "@/components/main-header"
 
 // Liturgical color definitions
 const LITURGICAL_COLORS = {
@@ -241,7 +242,13 @@ export default function YearlyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
+    <div className="min-h-screen bg-gray-50 px-4">
+      <MainHeader 
+        breadcrumbs={[
+          { label: "Building Your Application", href: "#" },
+          { label: "Data Fetching", active: true }
+        ]}
+      />
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
