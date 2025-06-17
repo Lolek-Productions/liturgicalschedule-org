@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, Plus, Calendar, Clock, Users } from "lucide-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MainHeader } from "@/components/main-header"
+import AddEventModal from "@/components/add-event-modal"
 
 // Sample liturgical events data
 const sampleEvents: any = {
@@ -71,6 +72,8 @@ const getEventTypeIcon = (type: any) => {
 
 export default function WeeklyCalendar() {
   const [currentWeek, setCurrentWeek] = useState(new Date())
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
 
   // Get the start of the current week (Sunday)
   const getWeekStart = (date: Date) => {
@@ -110,6 +113,17 @@ export default function WeeklyCalendar() {
     }
   }
 
+  const handleAddEvent = (newEvent: any) => {
+    console.log("New event added:", newEvent)
+    // Here you would typically save to your backend or state management
+    // For now, we'll just log it
+  }
+
+  const openModal = (date?: Date) => {
+    setSelectedDate(date)
+    setIsModalOpen(true)
+  }
+
   return (
     <div className="min-h-screen bg-gray-50 p-4">
       <MainHeader 
@@ -137,7 +151,7 @@ export default function WeeklyCalendar() {
                 <ChevronRight className="h-4 w-4" />
               </Button>
             </div>
-            <Button size="sm">
+            <Button size="sm" onClick={() => openModal()}>
               <Plus className="mr-2 h-4 w-4" />
               Add Event
             </Button>
@@ -162,7 +176,7 @@ export default function WeeklyCalendar() {
                         {date.getDate()}
                       </div>
                     </div>
-                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0" onClick={() => openModal(date)}>
                       <Plus className="h-3 w-3" />
                     </Button>
                   </CardTitle>
@@ -222,6 +236,12 @@ export default function WeeklyCalendar() {
             </CardContent>
           </Card>
         </div>
+        <AddEventModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          selectedDate={selectedDate}
+          onAddEvent={handleAddEvent}
+        />
       </div>
     </div>
   )
