@@ -170,7 +170,7 @@ export default function Home() {
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-6">Reduce Planning Time by 75%</h2>
               <p className="text-lg text-muted-foreground mb-8">
-                Stop juggling spreadsheets, phone calls, and paper schedules. LiturgyPro brings everything together in
+                Stop juggling spreadsheets, phone calls, and paper schedules. Liturgy Schedule brings everything together in
                 one intuitive system designed specifically for Catholic parishes.
               </p>
               <div className="space-y-4">
@@ -206,7 +206,7 @@ export default function Home() {
             <div className="bg-white p-8 rounded-lg shadow-lg">
               <div className="space-y-6">
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-2">Before LiturgyPro</h3>
+                  <h3 className="text-2xl font-bold mb-2">Before Liturgy Schedule</h3>
                   <div className="space-y-2 text-muted-foreground">
                     <p>📋 Multiple spreadsheets and documents</p>
                     <p>📞 Countless phone calls and emails</p>
@@ -216,7 +216,7 @@ export default function Home() {
                 </div>
                 <Separator />
                 <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-2 text-primary">After LiturgyPro</h3>
+                  <h3 className="text-2xl font-bold mb-2 text-primary">After Liturgy Schedule</h3>
                   <div className="space-y-2 text-muted-foreground">
                     <p>✅ Everything in one organized system</p>
                     <p>🔔 Automatic notifications and reminders</p>
@@ -236,7 +236,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Loved by Parish Leaders Everywhere</h2>
             <p className="text-xl text-muted-foreground">
-              See what pastors, liturgy coordinators, and deacons are saying about LiturgyPro.
+              See what pastors, liturgy coordinators, and deacons are saying about Liturgy Schedule.
             </p>
           </div>
 
@@ -270,7 +270,7 @@ export default function Home() {
             <Heart className="h-16 w-16 mx-auto mb-6 opacity-80" />
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to Transform Your Parish Liturgy Planning?</h2>
             <p className="text-xl mb-8 opacity-90">
-              Join hundreds of Catholic parishes who have already streamlined their liturgical planning with LiturgyPro.
+              Join hundreds of Catholic parishes who have already streamlined their liturgical planning with Liturgy Schedule.
               Start your free trial today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -307,7 +307,7 @@ export default function Home() {
             <div>
               <div className="flex items-center space-x-3 mb-4">
                 <Church className="h-6 w-6 text-primary" />
-                <span className="font-bold text-lg">LiturgyPro</span>
+                <span className="font-bold text-lg">Liturgy Schedule</span>
               </div>
               <p className="text-sm text-muted-foreground">
                 Empowering Catholic parishes with modern liturgical planning tools while honoring sacred traditions.
