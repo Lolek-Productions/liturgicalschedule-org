@@ -4,6 +4,7 @@ import {
   Calendar,
   Bot,
   Church,
+  LayoutDashboard,
 } from "lucide-react"
 import { NavProjects } from "@/components/nav-projects"
 import { NavUser } from "@/components/nav-user"
@@ -13,11 +14,6 @@ import { SidebarMenuItemsComponent } from "@/components/sidebar-menu-items-compo
 import { SidebarMenuMinistriesComponent } from "@/components/sidebar-menu-ministries-component"
 
 const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/placeholder.svg?height=32&width=32",
-  },
   teams: [
     {
       name: "St. Leo",
@@ -57,9 +53,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
             <SidebarMenuItem>
               <SidebarMenuButton asChild>
-                <a href={`/today`}>
-                  <Church />
-                  <span>Today</span>
+                <a href={`/dashboard`}>
+                  <LayoutDashboard />
+                  <span>Dashboard</span>
                 </a>
               </SidebarMenuButton>
             </SidebarMenuItem>
@@ -126,7 +122,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
