@@ -1,5 +1,3 @@
-"use client"
-
 import type * as React from "react"
 import {
   BookOpen,
@@ -23,17 +21,14 @@ const data = {
   teams: [
     {
       name: "St. Leo",
-      logo: Church,
       plan: "Enterprise",
     },
     {
       name: "St. Mary's",
-      logo: Church,
       plan: "Startup",
     },
     {
       name: "St. John's",
-      logo: Church,
       plan: "Free",
     },
   ],
