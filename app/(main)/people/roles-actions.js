@@ -1,8 +1,8 @@
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/client";
 
 export async function createRole(name) {
   // Insert new role, return id and name
-  const { data, error } = await supabase
+  const { data, error } = await createClient()
     .from("roles")
     .insert([{ name }])
     .select()
@@ -12,7 +12,7 @@ export async function createRole(name) {
 }
 
 export async function getAllRolesDb() {
-  const { data, error } = await supabase
+  const { data, error } = await createClient()
     .from("roles")
     .select("id, name");
   if (error) throw error;

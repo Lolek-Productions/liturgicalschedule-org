@@ -2,7 +2,6 @@
 
 import { MainHeader } from "@/components/main-header"
 import { useAppContext } from '@/contexts/AppContextProvider';
-import { SidebarTrigger } from "@/components/ui/sidebar"
 
 export default function Page() {
   const { user, userSettings, selectedParishId, selectedParish } = useAppContext();

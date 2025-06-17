@@ -1,9 +1,9 @@
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@/lib/supabase/client";
 
 export async function getPeople({ page = 1, pageSize = 10, sort = "first_name", order = "asc" }) {
   const from = (page - 1) * pageSize;
   const to = from + pageSize - 1;
-  const { data, error, count } = await supabase
+  const { data, error, count } = await createClient()
     .from("people")
     .select("*", { count: "exact" })
     .order(sort, { ascending: order === "asc" })
@@ -13,7 +13,7 @@ export async function getPeople({ page = 1, pageSize = 10, sort = "first_name", 
 }
 
 export async function getPerson(id) {
-  const { data, error } = await supabase
+  const { data, error } = await createClient()
     .from("people")
     .select("*")
     .eq("id", id)
@@ -23,7 +23,7 @@ export async function getPerson(id) {
 }
 
 export async function createPerson(person) {
-  const { data, error } = await supabase
+  const { data, error } = await createClient()
     .from("people")
     .insert([person])
     .select()
@@ -33,7 +33,7 @@ export async function createPerson(person) {
 }
 
 export async function updatePerson(id, updates) {
-  const { data, error } = await supabase
+  const { data, error } = await createClient()
     .from("people")
     .update(updates)
     .eq("id", id)
@@ -44,7 +44,7 @@ export async function updatePerson(id, updates) {
 }
 
 export async function deletePerson(id) {
-  const { error } = await supabase
+  const { error } = await createClient()
     .from("people")
     .delete()
     .eq("id", id);
@@ -54,7 +54,7 @@ export async function deletePerson(id) {
 
 // Fetch all unique roles from the people table (flattened)
 export async function getAllRoles() {
-  const { data, error } = await supabase
+  const { data, error } = await createClient()
     .from("people")
     .select("roles");
   if (error) throw error;
