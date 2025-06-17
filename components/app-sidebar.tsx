@@ -21,15 +21,15 @@ const data = {
   teams: [
     {
       name: "St. Leo",
-      plan: "Enterprise",
+      plan: "Murray, KY",
     },
     {
       name: "St. Mary's",
-      plan: "Startup",
+      plan: "Murray, KY",
     },
     {
       name: "St. John's",
-      plan: "Free",
+      plan: "Murray, KY",
     },
   ],
   
