@@ -1,6 +1,10 @@
+'use client'
+
 import { MainHeader } from "@/components/main-header"
+import { useAppContext } from '@/contexts/AppContextProvider';
 
 export default function Page() {
+  const { user, userSettings, selectedParishId, selectedParish } = useAppContext();
   return (
     <div className="flex-1 flex flex-col">
       <MainHeader 
@@ -16,6 +20,19 @@ export default function Page() {
           <div className="aspect-video rounded-xl bg-muted/50" />
         </div>
         <div>
+
+          Cool!
+
+          Selected Parish ID: {selectedParishId}
+
+          Selected Parish: {selectedParish ? selectedParish.name : 'No parish selected'}
+
+          User Settings: {JSON.stringify(userSettings)}
+
+          Parish Details: {JSON.stringify(selectedParish)}
+
+          User: {JSON.stringify(user)}
+
           Main Content
         </div>
         <div className="min-h-[100vh] flex-1 rounded-xl bg-muted/50 md:min-h-min" />

@@ -1,49 +1,30 @@
-import { createServerClient as createSupabaseServerClient } from '@supabase/ssr';
+import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-import { User } from '@supabase/supabase-js';
-import { CookieOptions } from '@supabase/ssr';
 
-interface UserResponse {
-  user: User | null;
-  error: Error | null;
-}
-
-export async function createServerSupabaseClient() {
+export async function createClient() {
   const cookieStore = await cookies();
   
-  return createSupabaseServerClient(
+  return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        async get(name: string) {
-          const cookie = await cookieStore.get(name);
-          return cookie?.value;
+        getAll() {
+          return cookieStore.getAll()
         },
-        async set(name: string, value: string, options: CookieOptions) {
+        setAll(cookiesToSet) {
           try {
-            await cookieStore.set({ 
-              name, 
-              value, 
-              ...options,
-              // Ensure the cookie is httpOnly and secure in production
-              httpOnly: true,
-              secure: process.env.NODE_ENV === 'production',
-            });
+            cookiesToSet.forEach(({ name, value, options }) => {
+              cookieStore.set(name, value, {
+                ...options,
+                // Let Supabase handle auth cookie security settings
+                // Don't override httpOnly as it may break client-side auth
+              })
+            })
           } catch (error) {
-            console.error('Error setting cookie:', error);
-          }
-        },
-        async remove(name: string, options: CookieOptions) {
-          try {
-            await cookieStore.set({ 
-              name, 
-              value: '', 
-              ...options, 
-              maxAge: 0 
-            });
-          } catch (error) {
-            console.error('Error removing cookie:', error);
+            // The `setAll` method was called from a Server Component.
+            // This can be ignored if you have middleware refreshing user sessions.
+            console.error('Error setting cookies:', error);
           }
         },
       },
@@ -51,9 +32,10 @@ export async function createServerSupabaseClient() {
   );
 }
 
-export async function getCurrentUser(): Promise<UserResponse> {
+// Keep your nice helper function but make it use the standard client
+export async function getCurrentUser() {
   try {
-    const supabase = await createServerSupabaseClient();
+    const supabase = await createClient();
     const { data: { user }, error } = await supabase.auth.getUser();
     
     if (error) {
@@ -66,6 +48,37 @@ export async function getCurrentUser(): Promise<UserResponse> {
     console.error('Error in getCurrentUser:', error);
     return { 
       user: null, 
+      error: error instanceof Error ? error : new Error('Unknown error occurred') 
+    };
+  }
+}
+
+// Additional helper for getting user with parish data
+export async function getCurrentUserWithParish() {
+  try {
+    const supabase = await createClient();
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+    
+    if (authError || !user) {
+      return { user: null, selectedParishId: null, error: authError };
+    }
+
+    const { data: profile, error: profileError } = await supabase
+      .from('user_profiles')
+      .select('selected_parish_id')
+      .eq('user_id', user.id)
+      .single();
+    
+    return { 
+      user, 
+      selectedParishId: profile?.selected_parish_id || null, 
+      error: profileError 
+    };
+  } catch (error) {
+    console.error('Error in getCurrentUserWithParish:', error);
+    return { 
+      user: null, 
+      selectedParishId: null,
       error: error instanceof Error ? error : new Error('Unknown error occurred') 
     };
   }

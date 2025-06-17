@@ -1,6 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar"
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar"
-import UserSettingsProvider from "@/providers/UserSettingsProvider"
+import AppProviderWrapper from "@/providers/AppProvider"
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 
@@ -8,7 +8,7 @@ export default function MainLayout({
   children,
 }) {
   return (
-    <UserSettingsProvider>
+    <AppProviderWrapper>
       <SidebarProvider>
         <div className="flex flex-col md:flex-row min-h-screen w-full">
           {/* Sidebar: only visible on md and up */}
@@ -28,6 +28,6 @@ export default function MainLayout({
           </SidebarInset>
         </div>
       </SidebarProvider>
-    </UserSettingsProvider>
+    </AppProviderWrapper>
   )
 }

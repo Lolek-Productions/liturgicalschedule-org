@@ -8,14 +8,14 @@ import {
 } from "@/components/ui/sidebar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import { ChevronRight, Loader2, Church, Plus } from "lucide-react"
-import { useUserSettings } from '@/contexts/UserSettingsContext';
+import { useAppContext } from '@/contexts/AppContextProvider';
 
 export function SidebarMenuMinistriesComponent() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [ministries, setMinistries] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { selectedParish, isLoading: isSettingsLoading } = useUserSettings();
+  const { selectedParish, isLoading: isSettingsLoading } = useAppContext();
 
   const fetchMinistries = async () => {
     try {
