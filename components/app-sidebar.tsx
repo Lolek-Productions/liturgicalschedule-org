@@ -64,7 +64,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               title: "Calendar",
               url: "#",
               icon: Calendar,
-              isActive: false,
+              isActive: true,
               items: [
                 {
                   title: "Yearly",
@@ -72,11 +72,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 },
                 {
                   title: "Monthly",
-                  url: "#",
+                  url: "/monthly",
                 },
                 {
                   title: "Weekly",
-                  url: "#",
+                  url: "/weekly",
                 },
               ],
             }]}/>

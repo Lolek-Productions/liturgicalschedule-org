@@ -8,10 +8,12 @@ export default function MainLayout({
   return (
     <AppProviderWrapper>
       <SidebarProvider>
-        <AppSidebar />
-        <main>
-          {children}
-        </main>
+        <div className="flex h-screen w-full">
+          <AppSidebar />
+          <main className="flex-1 overflow-auto">
+            {children}
+          </main>
+        </div>
       </SidebarProvider>
     </AppProviderWrapper>
   )
