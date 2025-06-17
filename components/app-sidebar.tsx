@@ -3,7 +3,6 @@ import {
   BookOpen,
   Calendar,
   Bot,
-  Church,
   LayoutDashboard,
 } from "lucide-react"
 import { NavProjects } from "@/components/nav-projects"

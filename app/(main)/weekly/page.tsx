@@ -7,8 +7,27 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { MainHeader } from "@/components/main-header"
 import AddEventModal from "@/components/add-event-modal"
 
+interface EventItem {
+  id: number
+  time: string
+  title: string
+  type: string
+}
+
+interface EventData {
+  id: number
+  title: string
+  date: string
+  time: string
+  duration: string
+  type: string
+  description: string
+  isRecurring: boolean
+  recurringType: string
+}
+
 // Sample liturgical events data
-const sampleEvents: any = {
+const sampleEvents: Record<number, EventItem[]> = {
   0: [
     // Sunday
     { id: 1, time: "8:00 AM", title: "Morning Prayer", type: "service" },
@@ -48,7 +67,7 @@ const sampleEvents: any = {
 
 const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 
-const getEventTypeColor = (type: any) => {
+const getEventTypeColor = (type: string) => {
   switch (type) {
     case "service":
       return "bg-blue-100 text-blue-800 hover:bg-blue-200"
@@ -59,7 +78,7 @@ const getEventTypeColor = (type: any) => {
   }
 }
 
-const getEventTypeIcon = (type: any) => {
+const getEventTypeIcon = (type: string) => {
   switch (type) {
     case "service":
       return <Calendar className="h-3 w-3" />
@@ -113,7 +132,7 @@ export default function WeeklyCalendar() {
     }
   }
 
-  const handleAddEvent = (newEvent: any) => {
+  const handleAddEvent = (newEvent: EventData) => {
     console.log("New event added:", newEvent)
     // Here you would typically save to your backend or state management
     // For now, we'll just log it
@@ -161,7 +180,7 @@ export default function WeeklyCalendar() {
         {/* Calendar Grid */}
         <div className="grid gap-3 xl:grid-cols-7">
           {weekDates.map((date, dayIndex) => {
-            const dayEvents: any[] = sampleEvents[dayIndex] || []
+            const dayEvents: EventItem[] = sampleEvents[dayIndex] || []
             const isToday = date.toDateString() === new Date().toDateString()
 
             return (
@@ -185,7 +204,7 @@ export default function WeeklyCalendar() {
                   {dayEvents.length === 0 ? (
                     <p className="text-sm text-gray-500 italic py-4">No events scheduled</p>
                   ) : (
-                    dayEvents.map((event: any) => (
+                    dayEvents.map((event: EventItem) => (
                       <div
                         key={event.id}
                         className="group cursor-pointer rounded-md border border-gray-200 p-2.5 transition-colors hover:bg-gray-50"

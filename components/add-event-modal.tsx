@@ -19,11 +19,23 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Checkbox } from "@/components/ui/checkbox"
 
+interface EventData {
+  id: number
+  title: string
+  date: string
+  time: string
+  duration: string
+  type: string
+  description: string
+  isRecurring: boolean
+  recurringType: string
+}
+
 interface AddEventModalProps {
   isOpen: boolean
   onClose: () => void
   selectedDate?: Date
-  onAddEvent: (event: any) => void
+  onAddEvent: (event: EventData) => void
 }
 
 export default function AddEventModal({ isOpen, onClose, selectedDate, onAddEvent }: AddEventModalProps) {
@@ -54,14 +66,14 @@ export default function AddEventModal({ isOpen, onClose, selectedDate, onAddEven
     e.preventDefault()
 
     // Create the event object
-    const newEvent = {
+    const newEvent: EventData = {
       id: Date.now(), // Simple ID generation
       title: formData.title,
       date: formData.date,
       time: formData.time,
       type: formData.type,
       description: formData.description,
-      duration: Number.parseInt(formData.duration),
+      duration: formData.duration,
       isRecurring: formData.isRecurring,
       recurringType: formData.recurringType,
     }
